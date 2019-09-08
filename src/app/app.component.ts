@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  constructor() {
+
+  }
+  search(event): void {
+    console.log(event);
+  }
 }
