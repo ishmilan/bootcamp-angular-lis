@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
 
   constructor() {
     this.query = '';
-    this.labelButton = this.labelButton ? this.labelButton : 'Pesquisar';
+    this.labelButton = this.labelButton ? this.labelButton : 'Buscar';
     this.placeholder = this.placeholder ? this.placeholder : '';
   }
 
@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   }
   search(event) {
     event.preventDefault();
-    this.result = `Consulta feita com a consulta "${this.query}".`;
+    this.result = `Resultado para la búsqueda de "${this.query}".`;
     this.searchEvent.emit({ query: this.query });
 
   }
