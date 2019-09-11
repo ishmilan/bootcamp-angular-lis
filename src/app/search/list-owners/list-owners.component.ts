@@ -1,17 +1,21 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OwnerService } from '../services/owner.service'
-import { Owner } from '../models/owner.interface';
+import { Owner } from 'shared/models';
 
 @Component({
   selector: 'app-list-owners',
   templateUrl: './list-owners.component.html',
   styleUrls: ['./list-owners.component.css']
 })
-export class ListOwnersComponent implements OnInit, OnChanges {
+export class ListOwnersComponent implements OnInit {
   public response: Owner[];
   public owners: Owner[];
   private loaded: boolean = false;
-  @Input() query: string;
+  @Input() set onSearch(query: string) {
+    if (this.loaded) {
+      this.loadOwners(query);
+    }
+  }
 
   constructor(private owner: OwnerService) {
     this.getOwners();
@@ -19,25 +23,20 @@ export class ListOwnersComponent implements OnInit, OnChanges {
 
   ngOnInit() {
   }
-  ngOnChanges() {
-    if(this.loaded) {
-      this.onSearch();
-    }
-    console.log(this.query);
-  }
   getOwners(): void {
     this.owner.getOwners().subscribe(data => {
       this.response = JSON.parse(data['_body']) as Owner[];
-      this.onSearch();
+      this.loadOwners('');
       this.loaded = true;
     });
   }
-  onSearch(): void {
-    if (this.query && this.query.length > 0) {
+  loadOwners(query: string): void {
+    if (query && query.length > 0) {
       this.owners = this.response.filter(owner => {
         let fields = ['firstName', 'lastName', 'address', 'city'];
         for (let field of fields) {
-          return (owner[field].toLocaleLowerCase().indexOf(this.query.toLocaleLowerCase()) != -1);
+        return (owner[field].toLowerCase()
+          .indexOf(query.toLowerCase()) > -1);
         }
       });
     } else {
