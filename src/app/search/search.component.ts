@@ -16,7 +16,10 @@ export class SearchComponent implements OnInit {
 
   constructor(private owner: OwnerService) {
     this.query = '';
-    this.owner.getOwners();
+    this.owner.getOwners().subscribe(data => { // Ejemplo de llamada al servicio
+      // this.results = data;
+      console.log(data);
+    });
   }
 
   ngOnInit() {
