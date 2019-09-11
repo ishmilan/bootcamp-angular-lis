@@ -37,7 +37,7 @@ export class ListOwnersComponent implements OnInit, OnChanges {
       this.owners = this.response.filter(owner => {
         let fields = ['firstName', 'lastName', 'address', 'city'];
         for (let field of fields) {
-          return (owner[field].indexOf(this.query) != -1);
+          return (owner[field].toLocaleLowerCase().indexOf(this.query.toLocaleLowerCase()) != -1);
         }
       });
     } else {

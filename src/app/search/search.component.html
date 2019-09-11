@@ -3,6 +3,6 @@
     <input type="text" name="query" [(ngModel)]="query" class="form-control" [placeholder]="placeholder">
     <input type="submit" class="btn btn-primary ml-1" (click)="search($event)" [value]="labelButton">
   </div>
-  <p>Parametro de búsqueda: {{query}}</p>
-  <p>Resultado: {{result}}</p>
+  <p *ngIf="!result">Parametro de búsqueda: {{query}}</p>
+  <p class="mb-0" *ngIf="result">Resultado: {{result}}</p>
 </form>
