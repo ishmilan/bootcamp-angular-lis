@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { OwnerService } from './services/owner.service';
 
 @Component({
   selector: 'app-search',
@@ -14,9 +13,8 @@ export class SearchComponent implements OnInit {
   @Input() placeholder: string;
   @Output() searchEvent = new EventEmitter();
 
-  constructor(private owner: OwnerService) {
+  constructor() {
     this.query = '';
-    this.owner.getOwners();
   }
 
   ngOnInit() {
@@ -25,10 +23,10 @@ export class SearchComponent implements OnInit {
     }
     this.placeholder = this.placeholder ? this.placeholder : '';
   }
-  search(event) {
+  search(event): void {
     event.preventDefault();
     this.result = `Resultado para la búsqueda de "${this.query}".`;
     this.searchEvent.emit({ query: this.query });
-
   }
+
 }

@@ -7,5 +7,8 @@
     <div class="col-12 col-md-6 col-lg-4 col-offset-4">
       <app-search labelButton="" placeholder="Escribir..." (searchEvent)="search($event)"></app-search>
     </div>
+    <div class="col-12 col-md-6 col-lg-4 col-offset-4">
+      <app-list-owners [query]="query"></app-list-owners>
+    </div>
   </div>
 </div>

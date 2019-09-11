@@ -1,0 +1,8 @@
+<div *ngIf="owners && owners.length > 0">
+  <ul class="list-unstyled pl-2 small">
+    <li *ngFor="let owner of owners">
+      <strong [innerHTML]="owner.firstName + ', ' + owner.lastName"></strong>
+      <span [innerHTML]="'(' + owner.address + ', ' + owner.city + ')'"></span>
+    </li>
+  </ul>
+</div>

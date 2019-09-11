@@ -7,10 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  query: string;
   constructor() {
 
   }
   search(event): void {
-    console.log(event);
+    this.query = event.query;
   }
 }

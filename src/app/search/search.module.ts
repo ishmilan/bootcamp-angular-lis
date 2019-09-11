@@ -4,6 +4,7 @@ import { SearchComponent } from './search.component';
 import { OwnerService } from './services/owner.service';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ListOwnersComponent } from './list-owners/list-owners.component';
 
 @NgModule({
   imports: [
@@ -11,8 +12,8 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     HttpModule,
   ],
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, ListOwnersComponent],
   providers: [OwnerService],
-  exports: [SearchComponent]
+  exports: [SearchComponent, ListOwnersComponent]
 })
 export class SearchModule { }
