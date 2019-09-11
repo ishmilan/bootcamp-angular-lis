@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { OwnerService } from './services/owner.service';
 
 @Component({
   selector: 'app-search',
@@ -13,13 +14,16 @@ export class SearchComponent implements OnInit {
   @Input() placeholder: string;
   @Output() searchEvent = new EventEmitter();
 
-  constructor() {
+  constructor(private owner: OwnerService) {
     this.query = '';
-    this.labelButton = this.labelButton ? this.labelButton : 'Buscar';
-    this.placeholder = this.placeholder ? this.placeholder : '';
+    this.owner.getOwners();
   }
 
   ngOnInit() {
+    if (this.labelButton === '' || !this.labelButton) {
+      this.labelButton = 'Buscar!';
+    }
+    this.placeholder = this.placeholder ? this.placeholder : '';
   }
   search(event) {
     event.preventDefault();

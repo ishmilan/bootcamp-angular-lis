@@ -1,20 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SearchComponent } from './search/search.component';
+import { SearchModule } from './search/search.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    SearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
